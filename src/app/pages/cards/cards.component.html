@@ -1,15 +1,32 @@
-<div *ngFor="let card of cardsData">
-  <mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title>{{card.oid}}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div>{{card.firstname}}</div>
-      <div>{{card.lastname}}</div>
-      <div>{{card.locationname}}</div>
-    </mat-card-content>
-    <mat-card-actions>
-      <button (click)="openEmployeeHistory(card.history)" mat-flat-button color="primary">Employee History</button>
-    </mat-card-actions>
-  </mat-card>
+<div class="card-wrapper" layout="column" *ngFor="let card of cardsData">
+  <div layout=row [@slideInWithDelay]="animate">
+    <mat-card class="example-card">
+      <img mat-card-image src="../../../assets/avatar.jpg">
+      <mat-card-content>
+        <div *ngIf="card.oid">
+          <label>ID:</label>
+          <span>{{card.oid}}</span>
+        </div>
+        <div *ngIf="card.firstname">
+          <label>Firstname:</label>
+          <span>{{card.firstname}}</span>
+        </div>
+        <div *ngIf="card.lastname">
+          <label>Lastname:</label>
+          <span>{{card.lastname}}</span>
+        </div>
+        <div *ngIf="card.locationname">
+          <label>Location:</label>
+          <span>{{card.locationname}}</span>
+        </div>
+        <div *ngIf="card.badgenr6">
+          <label>badgenr6:</label>
+          <span>{{card.badgenr6}}</span>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button class="employe-history-button" (click)="openEmployeeHistory(card.history)" mat-flat-button color="primary">Employee History</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>
