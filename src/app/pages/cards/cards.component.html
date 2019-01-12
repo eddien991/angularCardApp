@@ -1,3 +1,15 @@
-<p>
-  cards works!
-</p>
+<div *ngFor="let card of cardsData">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>{{card.oid}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div>{{card.firstname}}</div>
+      <div>{{card.lastname}}</div>
+      <div>{{card.locationname}}</div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="openEmployeeHistory(card.history)" mat-flat-button color="primary">Employee History</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

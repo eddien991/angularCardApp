@@ -12,7 +12,7 @@ export class CardsDataService {
 
   getCardsData() {
     return this.http.get(this.cardsUrl, {
-        responseType: 'text',
+        responseType: 'json',
         observe: 'response'
     });
   }
