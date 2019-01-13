@@ -7,13 +7,23 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./employee-history-dialog.component.css']
 })
 export class EmployeeHistoryDialogComponent implements OnInit {
+  displayedColumns = [
+    'hoid',
+    'changed',
+    'category',
+    'locationid',
+    'locationname',
+    'idf',
+    'production',
+  ];
 
   constructor(
     public dialogRef: MatDialogRef<EmployeeHistoryDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
 
   ngOnInit() {
-    console.log(this.data);
+
   }
 
 }

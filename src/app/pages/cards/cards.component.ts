@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CardsDataService } from '../../services/card-service/cards-data.service';
+import { EmployeeHistoryDataService } from '../../services/employee-history-service/employee-history-data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeeHistoryDialogComponent } from '../../dialogs/employee-history-dialog/employee-history-dialog.component';
 import { animate, query, stagger, state, style, transition, trigger } from '@angular/animations';
@@ -23,6 +24,7 @@ import { animate, query, stagger, state, style, transition, trigger } from '@ang
 })
 export class CardsComponent implements OnInit {
   private cardsData: any;
+  private employeeHistoryData: any;
   public animate: any = {
     value: 'init',
     params: {
@@ -30,24 +32,27 @@ export class CardsComponent implements OnInit {
     }
   };
 
-  constructor(private cardsDataService: CardsDataService, private dialog: MatDialog) { }
+  constructor(
+    private cardsDataService: CardsDataService,
+    private employeeHistoryService: EmployeeHistoryDataService,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit() {
     this.cardsDataService.getCardsData().subscribe((cardsData: any) => {
       this.cardsData = cardsData.body.data;
-      console.log('this.cardsData ', this.cardsData);
     });
     this.animate.value = 'start';
   }
 
-  public openEmployeeHistory(employeeHistory: string): void {
-    const dialogRef = this.dialog.open(EmployeeHistoryDialogComponent, {
-      data: {
-        employeeHistory: employeeHistory
-      }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-     // console.log(`Dialog result: ${result}`);
+  public openEmployeeHistory(employeeHistory): void {
+    this.employeeHistoryService.getEmployeeHistoryData(employeeHistory).subscribe((emoloyeeHistoryData: any) => {
+      this.employeeHistoryData = emoloyeeHistoryData.body.data;
+      this.dialog.open(EmployeeHistoryDialogComponent, {
+        data: {
+          employeeHistory: this.employeeHistoryData
+        }
+      });
     });
   }
 }

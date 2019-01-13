@@ -8,9 +8,12 @@ import { CardsDataService } from './services/card-service/cards-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatTableModule, } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EmployeeHistoryDialogComponent } from './dialogs/employee-history-dialog/employee-history-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EmployeeHistoryDataService } from './services/employee-history-service/employee-history-data.service';
+import { MatSortModule } from '../../node_modules/@angular/material';
 
 @NgModule({
   imports: [
@@ -18,9 +21,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     MatButtonModule,
+    MatTableModule,
     MatCardModule,
     MatDialogModule,
     BrowserAnimationsModule,
+    MatSortModule,
   ],
   entryComponents: [
     EmployeeHistoryDialogComponent,
@@ -30,7 +35,7 @@ declarations: [
   CardsComponent,
   EmployeeHistoryDialogComponent,
 ],
-  providers: [CardsDataService],
+  providers: [CardsDataService, EmployeeHistoryDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
