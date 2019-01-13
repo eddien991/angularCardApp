@@ -9,4 +9,5 @@
 
 .mat-dialog-content {
     max-height: none !important;
+    min-height: 900px !important;
 }

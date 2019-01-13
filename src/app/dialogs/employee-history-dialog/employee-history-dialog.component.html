@@ -1,8 +1,11 @@
-<h2 mat-dialog-title>
-  ({{data.employeeHistory[0].oid}}) {{data.employeeHistory[0].firstname}} {{data.employeeHistory[0].lastname}} - Employee History
+<h2 mat-dialog-title *ngIf="data.employeeHistory.length">
+  {{data.employeeHistory[0].oid}} - {{data.employeeHistory[0].firstname}} {{data.employeeHistory[0].lastname}} - Employee History
+</h2>
+<h2 mat-dialog-title *ngIf="!data.employeeHistory.length">
+  There is no history available for this employee.
 </h2>
 <mat-dialog-content>
-    <div class="example-container mat-elevation-z8">
+    <div class="example-container mat-elevation-z8" *ngIf="data.employeeHistory.length">
         <table mat-table [dataSource]="data.employeeHistory">
 
           <!-- HOID Column -->
